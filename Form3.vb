@@ -75,6 +75,7 @@ Public Class Form3
 
 
         chartDrawer = New DrawLine(canvas, width, height, minX, maxX, minY, maxY)
+        'chartDrawer.UpdateAtrib(minX, maxX, minY, maxY)
 
         Dim pointcolor As New SKPaint With {
             .Color = colormtow,
@@ -90,6 +91,10 @@ Public Class Form3
         chartDrawer.DrawDataLineXY()
         chartDrawer.DrawLineXY()
         chartDrawer.DrawGrid()
+
+        'mtow.UpdateAtrib(minX, maxX, minY, maxY)
+        'mlw.UpdateAtrib(minX, maxX, minY, maxY)
+        'mzfw.UpdateAtrib(minX, maxX, minY, maxY)
 
         mtow.UpdateCanvas(canvas)
         mtow.UpdateSize(width, height)
@@ -241,6 +246,10 @@ Public Class Form3
             maxX = TextBox3.Text
             minY = TextBox1.Text
             maxY = TextBox2.Text
+
+            mtow.UpdateAtrib(minX, maxX, minY, maxY)
+            mlw.UpdateAtrib(minX, maxX, minY, maxY)
+            mzfw.UpdateAtrib(minX, maxX, minY, maxY)
             SkControl1.Invalidate()
         Else
             MsgBox("Поля не должны быть пустыми!")
@@ -724,7 +733,7 @@ Public Class Form3
                 command.Parameters.AddWithValue("@flight_bort", TextBox25.Text)
                 command.Parameters.AddWithValue("@config_id", TextBox24.Text)
                 command.ExecuteNonQuery()
-
+                MsgBox("Запись в базу данных")
             End Using
         Catch ex As Exception
             MsgBox(ex.Message)

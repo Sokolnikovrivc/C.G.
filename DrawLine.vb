@@ -165,4 +165,22 @@ Public Class DrawLine
         Me.Width = newWidth
         Me.Height = newHeight
     End Sub
+
+    Public Sub UpdateAtrib(newMinX As Single, newMaxX As Single, newMinY As Single, newMaxY As Single)
+        Me.MinX = newMinX
+        Me.MaxX = newMaxX
+        Me.MinY = newMinY
+        Me.MaxY = newMaxY
+
+        ' Пересчитываем масштаб
+        Dim scales = Mashtab(MinX, MaxX, MinY, MaxY)
+        Me.ScaleX = scales("X")
+        Me.ScaleY = scales("Y")
+
+        ' Пересчитываем сетку
+        Dim grid = Mashtabgrid(MinX, MaxX, MinY, MaxY)
+        Me.ScaleXgrid = grid("X")
+        Me.ScaleYgrid = grid("Y")
+    End Sub
+
 End Class
